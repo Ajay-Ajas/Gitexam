@@ -40,7 +40,7 @@ jobs:
         run: echo "Project build successful!"
 
 
-  deploy:
+    deploy:
 
     runs-on: ubuntu-latest
     needs: build
@@ -50,5 +50,8 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Deploy Step
-        run: echo "Deployment successful!"
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./
