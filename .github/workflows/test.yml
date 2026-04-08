@@ -10,7 +10,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-
       - name: Checkout repository
         uses: actions/checkout@v4
 
@@ -27,12 +26,10 @@ jobs:
 
 
   build:
-
     runs-on: ubuntu-latest
     needs: test
 
     steps:
-
       - name: Checkout repository
         uses: actions/checkout@v4
 
@@ -40,13 +37,11 @@ jobs:
         run: echo "Project build successful!"
 
 
-    deploy:
-
+  deploy:
     runs-on: ubuntu-latest
     needs: build
 
     steps:
-
       - name: Checkout repository
         uses: actions/checkout@v4
 
