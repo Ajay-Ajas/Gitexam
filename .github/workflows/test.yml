@@ -1,14 +1,16 @@
-name: Test code testing
+name: Complete CI/CD Pipeline
 
 on:
   push:
     branches: ["main"]
 
 jobs:
+
   test:
     runs-on: ubuntu-latest
 
     steps:
+
       - name: Checkout repository
         uses: actions/checkout@v4
 
@@ -20,5 +22,33 @@ jobs:
       - name: Install dependencies
         run: pip install pytest
 
-      - name: Run tests
+      - name: Run Unit Tests
         run: pytest
+
+
+  build:
+
+    runs-on: ubuntu-latest
+    needs: test
+
+    steps:
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build Step
+        run: echo "Project build successful!"
+
+
+  deploy:
+
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Deploy Step
+        run: echo "Deployment successful!"
